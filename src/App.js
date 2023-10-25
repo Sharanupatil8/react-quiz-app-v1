@@ -29,7 +29,6 @@ function reducer(state, action) {
         ...state,
         questions: action.payload,
         status: "ready",
-        secondsRemaining: state.questions.length * SECS_PER_QUESTION,
       };
     case "dataFailed":
       return {
@@ -40,6 +39,7 @@ function reducer(state, action) {
       return {
         ...state,
         status: "active",
+        secondsRemaining: state.questions.length * SECS_PER_QUESTION,
       };
     case "nextQuestion":
       return { ...state, index: state.index + 1, answer: null };
@@ -65,7 +65,7 @@ function reducer(state, action) {
         ...initialstate,
         questions: state.questions,
         status: "ready",
-        secondsRemaining: 6,
+        secondsRemaining: state.questions.length * SECS_PER_QUESTION,
       };
     case "tick":
       return {
